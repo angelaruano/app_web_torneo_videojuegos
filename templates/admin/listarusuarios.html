@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar</title>
+
+    <!-- Enlace a hoja de estilo main.css-->
+    <link rel = 'stylesheet' href="{{url_for('static', filename='main.css') }}">
+    <!-- Enlace bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Enlace a hoja de estilo de bootstrap cdn-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+
+
+</head>
+<body>
+<main class="container p-3">
+        <div class="row">
+            <div class="col-md-9 offset-md-2 my-auto"> <!--Este div ocupará 4 columnas del espacio (centrado)-->
+                <br>
+            <a href="/index"><span class="glyphicon glyphicon-shopping-cart"></span> HOME</a>
+                <br>
+                <div class="card  text-warning border-warning mb-3" style="max-width: 40rem;">
+
+                        <div class="card-header text-center">
+                            <fieldset>
+                                <legend>Usuarios</legend>
+                            </fieldset>
+                        </div>
+                        <div class="card-body">
+
+                                <div class="form-group">
+                                    <div class="form-group row">
+                                        {#COMENTARIO: Bucle para que salga el listado de usuarios#}
+                                        <ul>
+                                            {% for val in listar %}
+                                                <li>
+                                                    <label  class="col-sm-0 col-form-label ">IDENTIDAD: &nbsp &nbsp
+                                                    <label class="col-sm-0 col-form-label text-success">{{val.id}}</label>
+                                                    &nbsp &nbsp
+                                                    <label  class="col-sm-0 col-form-label ">NOMBRE: &nbsp &nbsp
+                                                    <label class="col-sm-0 col-form-label text-success">{{val.usuario}}</label>
+                                                    &nbsp &nbsp
+                                                    <a href="/admin/verusuario/{{val.id}}"><span class="glyphicon glyphicon-shopping-cart"></span> Ver datos</a>
+                                                    &nbsp &nbsp
+                                                    <a href="/borrar/{{val.id}}"><span class="glyphicon glyphicon-shopping-cart"></span> Eliminar usuario</a>
+                                                    &nbsp &nbsp
+                                                    <a href="/emailindividual/{{val.id}}"><span class="glyphicon glyphicon-shopping-cart"></span> Envía email</a>
+
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+

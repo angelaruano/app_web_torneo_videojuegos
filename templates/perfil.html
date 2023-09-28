@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PERFIL DE USUARIO</title>
+
+    <!-- Enlace a hoja de estilo main.css-->
+    <link rel = 'stylesheet' href="{{url_for('static', filename='main.css') }}">
+    <!-- Enlace bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Enlace a hoja de estilo de bootstrap cdn-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+
+</head>
+
+<body>
+{% if current_user.is_authenticated%}
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/index">HOME</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="/index">Jugar
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/perfil">Mi perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/torneo">Torneo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/instrucciones">Instrucciones para jugar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/premios">Ver premios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contacto">CONTACTO</a>
+        </li>
+          {% if current_user.is_admin()%}
+          <li class="nav-item">
+          <a class="nav-link active" href="#"></a>
+          <li class="nav-item">
+          <a class="nav-link active" href="/admin/listarusuarios">// FUNCIONES DE ADMINISTRADOR:  Listar usuarios// </a>
+          <li class="nav-item">
+          <a class="nav-link active" href="/emailmasivo"> // email masivo //</a>
+          {% endif%}
+
+
+      </ul>
+      <form class="d-flex">
+        <a class="nav-link" href="/logout">CERRAR SESIÓN</a>
+
+      </form>
+    </div>
+  </div>
+</nav>
+
+{% endif %}
+<h3 class="text-center text-warning">
+    PERFIL DE USUARIO</h3>
+
+
+<main class="container p-3">
+        <div class="row">
+            <div class="col-md-9 offset-md-2 my-auto"> <!--Este div ocupará 4 columnas del espacio (centrado)-->
+                <a href="/baja"><span class="glyphicon glyphicon-shopping-cart text-warning" ></span> DARME DE BAJA</a>
+                &nbsp &nbsp
+                <a href="/cambio"><span class="glyphicon glyphicon-shopping-cart"></span> CAMBIAR MI CONTRASEÑA</a>
+                                <br>
+                <div class="card  text-warning border-warning mb-3" style="max-width: 40rem;">
+
+                        <div class="card-header text-center">
+                            <fieldset>
+                                <legend>DATOS</legend>
+                            </fieldset>
+                        </div>
+                        <div class="card-body">
+
+                                <div class="form-group">
+                                    <div class="form-group row">
+                                        <label  class="col-sm-0 col-form-label ">IDENTIDAD DE USUARIO: &nbsp &nbsp
+                                        <label class="col-sm-0 col-form-label text-success">{{perfil.id}}</label>
+                                        <br>
+                                        <label  class="col-sm-0 col-form-label ">NOMBRE DE USUARIO: &nbsp &nbsp
+                                        <label class="col-sm-0 col-form-label text-success">{{perfil.usuario}}</label>
+                                        <br>
+                                        <label  class="col-sm-0 col-form-label ">CONTRASEÑA DE USUARIO: &nbsp &nbsp
+                                        <label class="col-sm-0 col-form-label text-success">{{perfil.password}}</label>
+                                        <br>
+                                        <label  class="col-sm-0 col-form-label ">EMAIL DE USUARIO: &nbsp &nbsp
+                                        <label class="col-sm-0 col-form-label text-success">{{perfil.email}}</label>
+                                        <br>
+                                        <label  class="col-sm-0 col-form-label ">PAIS: &nbsp &nbsp
+                                        <label class="col-sm-0 col-form-label text-success">{{perfil.pais}}</label>
+                                        <br>
+                                        <label  class="col-sm-0 col-form-label ">PROVINCIA: &nbsp &nbsp
+                                        <label class="col-sm-0 col-form-label text-success">{{perfil.provincia}}</label>
+
+                                        </div>
+                                        <fieldset>
+                                            <legend>MAYORES PUNTUACIONES</legend>
+                                        </fieldset>
+                                        <table class="table table-hover">
+                                        <thead>
+                                            <tr class="table-success">
+                                            <th scope="row">SPACE</th>
+                                            <td>{{punspa1}}</td>
+                                            <td>{{punspa2}}</td>
+                                            <td>{{punspa3}}</td>
+                                        </tr>
+                                        <tr class="table-warning">
+                                            <th scope="row">NAVES</th>
+                                            <td>{{punnav1}}</td>
+                                            <td>{{punnav2}}</td>
+                                            <td>{{punnav3}}</td>
+                                        </tr>
+                                        <tr class="table-info">
+                                            <th scope="row">ARKANOID</th>
+                                            <td>{{punark1}}</td>
+                                            <td>{{punark2}}</td>
+                                            <td>{{punark3}}</td>
+                                        </tr>
+
+
+    <form>
+</body>
+</html>

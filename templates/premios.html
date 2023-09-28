@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PREMIOS</title>
+
+    <!-- Enlace a hoja de estilo main.css-->
+    <link rel = 'stylesheet' href="{{url_for('static', filename='main.css') }}">
+    <!-- Enlace bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Enlace a hoja de estilo de bootstrap cdn-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+
+</head>
+<body>
+<h1 class="text-center text-warning">
+    PREMIOS PARA LOS GANADORES
+</h1>
+{% if current_user.is_authenticated%}
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/index">HOME</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="/index">Jugar
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/perfil">Mi perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/torneo">Torneo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/instrucciones">Instrucciones para jugar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/premios">Ver premios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contacto">CONTACTO</a>
+        </li>
+
+          {% if current_user.is_admin()%}
+          <li class="nav-item">
+          <a class="nav-link active" href="#"></a>
+          <li class="nav-item">
+          <a class="nav-link active" href="/admin/listarusuarios">// FUNCIONES DE ADMINISTRADOR:  Listar usuarios// </a>
+          <li class="nav-item">
+          <a class="nav-link active" href="/emailmasivo"> // email masivo //</a>
+          {% endif%}
+
+      </ul>
+      <form class="d-flex">
+        <a class="nav-link" href="/logout">CERRAR SESIÓN</a>
+
+      </form>
+    </div>
+  </div>
+</nav>
+
+{% endif %}
+
+  <div class="container">
+    <div class="card-group mt-3">
+
+      <div class="card border-danger text-white bg-danger text-center" style="width: 18rem;">
+          <img src="static/images/PlayStation5.png" class="card-img-top" alt="static/images/PlayStation5.png">
+        <div class="card-body">
+          <h4 class="card-title">PLAY STATION 5</h4>
+            <p class="card-text">PREMIO PARA EL GANADOR ABSOLUTO DEL TORNEO JUNTO CON LOS 5 JUEGOS.
+                Jugar no tiene límites.
+                Experimenta cargas superrápidas gracias a una unidad de estado sólido (SSD) de alta velocidad,
+                una inmersión más profunda con retroalimentación háptica, gatillos adaptables y audio 3D,
+                además de una nueva generación de increíbles juegos de PlayStation®. </p>
+
+        </div>
+      </div>
+            <div class="mx-2"></div>
+
+      <div class="card border-success text-white bg-success text-center" style="width: 18rem;">
+          <img src="static/images/BaldursGate3.png" class="card-img-top" alt="static/images/BaldursGate3.png">
+        <div class="card-body">
+          <h4 class="card-title">Baldur's Gate 3</h4>
+          <p class="card-text">El regreso de una de las sagas RPG más queridas por los jugadores de todo el mundo.
+              Baldur's Gate 3 trae de vuelta el mejor rol de fantasía de la mano de Larian Studios </p>
+
+        </div>
+      </div>
+
+        <div class="mx-2"></div>
+
+      <div class="card border-info text-white bg-info text-center" style="width: 18rem;">
+          <img src="static/images/AdInfinitum.png" class="card-img-top" alt="static/images/AdInfinitum.png">
+        <div class="card-body">
+          <h4 class="card-title">Ad Infinitum</h4>
+          <p class="card-text">Ad Infinitum es un videojuego de terror y supervivencia en primera persona
+              que insta a vivir los horrores propios y de la Primera Guerra Mundial como un soldado alemán.
+              Criaturas terribles, trampas mortales y misterios insanos marcan el camino del protagonista. </p>
+
+        </div>
+      </div>
+
+  <div class="container">
+    <div class="card-group mt-3">
+
+      <div class="card border-info text-white bg-info text-center" style="width: 18rem;">
+          <img src="static/images/DragonAge.png" class="card-img-top" alt="static/images/DragonAge.png">
+        <div class="card-body">
+          <h4 class="card-title">Dragon Age Inquisition</h4>
+            <p class="card-text">La tercera entrega de esta saga de rol desarrollada por BioWare
+                nos llevará otra vez a este gran mundo épico.
+                Guerra, magia y un gran arsenal te esperan en Orlais para sumergirte en este tercer título de la saga.</p>
+
+        </div>
+      </div>
+            <div class="mx-2"></div>
+
+      <div class="card border-warning text-white bg-warning text-center" style="width: 18rem;">
+          <img src="static/images/Assassins.png" class="card-img-top" alt="static/images/Assassins.png">
+        <div class="card-body">
+          <h4 class="card-title">Assassins Creed Valhalla</h4>
+          <p class="card-text">Assassin’s Creed Valhalla es la nueva entrega de Assassin’s Creed de Ubisoft,
+              la saga de acción y aventuras en mundo abierto más famosa de la desarrolladora de videojuegos.
+              En esta ocasión, y siguiendo con los toques RPG de las últimas entregas,
+              viajaremos al siglo IX después de Cristo, llegando a una Gran Bretaña invadida por vikingos. </p>
+
+        </div>
+      </div>
+
+        <div class="mx-2"></div>
+
+      <div class="card border-success text-white bg-success text-center" style="width: 18rem;">
+          <img src="static/images/Steelrising.png" class="card-img-top" alt="static/images/Steelrising.png">
+        <div class="card-body">
+          <h4 class="card-title">Steelrising</h4>
+          <p class="card-text">Steelrising es un videojuego de de rol y acción
+              firmado por los creadores del notable Greedfall que vuelven a apostar por una ambientación singular
+              llevando a los usuarios a combatir en el París prerrevolucionario contra un ejército de autómatas
+              de Luis XVI de Francia, ofreciendo una versión alternativa de la historia donde no faltan
+              María Antonieta, Lafayette y Robespierre.
+              Del jugador depende poner fin a esta locura y permitir que triunfe la Revolución Francesa. </p>
+
+        </div>
+      </div>
+
+</body>
+</html>
+
+
+</body>
+</html>

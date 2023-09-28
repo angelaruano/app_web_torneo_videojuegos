@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email</title>
+
+    <!-- Enlace a hoja de estilo main.css-->
+    <link rel = 'stylesheet' href="{{url_for('static', filename='main.css') }}">
+    <!-- Enlace bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Enlace a hoja de estilo de bootstrap cdn-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+    <main class="container p-3">
+        <div class="row">
+            <div class="col-md-9 offset-md-2 my-auto"> <!--Este div ocupará 4 columnas del espacio (centrado)-->
+                <br>
+                <div class="card text-warning border-warning mb-3" style="max-width: 40rem;">
+
+                        <div class="card-header text-center">
+                            <fieldset>
+                                <legend>Enviar correo</legend>
+                            </fieldset>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                {% if correo1 %}
+                              <fieldset>
+                                  <ul>
+                                    {% for val in correo1 %}
+                                    <li>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked="">
+                                        <label class="form-check-label text-success" for="flexCheckChecked">
+                                            {{ val }}
+                                            </label>
+                                    </li>
+                                        {% endfor %}
+                                      {% endif %}
+
+                                      </ul>
+                                    {% if correo2 %}
+                                  <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked="">
+                                        <label class="form-check-label text-success" for="flexCheckChecked">
+                                            {{ correo2 }}
+                                            </label>
+                                      {% endif %}
+                                    <div class="form-group">
+                                        <label for="exampleTextarea" class="form-label mt-4">Contenido</label>
+                                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                                    </div>
+                                    <p><button type="button" class="btn btn-success" onclick="location.href = 'http://127.0.0.1:5000/index'" >
+                                        ENVIAR
+                                    </button></p>
+
+                               </fieldset>
+                            </form>
+
+                        </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

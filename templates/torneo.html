@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instrucciones</title>
+
+    <!-- Enlace a hoja de estilo main.css-->
+    <link rel = 'stylesheet' href="{{url_for('static', filename='main.css') }}">
+    <!-- Enlace bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Enlace a hoja de estilo de bootstrap cdn-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+
+</head>
+<body>
+
+{% if current_user.is_authenticated%}
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/index">HOME</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="/index">Jugar
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/perfil">Mi perfil</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/torneo">Torneo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/instrucciones">Instrucciones para jugar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/premios">Ver premios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contacto">CONTACTO</a>
+        </li>
+
+          {% if current_user.is_admin()%}
+          <li class="nav-item">
+          <a class="nav-link active" href="#"></a>
+          <li class="nav-item">
+          <a class="nav-link active" href="/admin/listarusuarios">// FUNCIONES DE ADMINISTRADOR:  Listar usuarios// </a>
+          <li class="nav-item">
+          <a class="nav-link active" href="/emailmasivo"> // email masivo //</a>
+          {% endif%}
+
+      </ul>
+      <form class="d-flex">
+        <a class="nav-link" href="/logout">CERRAR SESIÓN</a>
+
+      </form>
+    </div>
+  </div>
+</nav>
+
+{% endif %}
+<main class="container p-3">
+<div class="row">
+    <div class="col-md-0 offset-md-9 my-auto">
+            <iframe src="https://free.timeanddate.com/countdown/i918zf3i/n141/cf12/cm0/cu4/ct0/cs0/ca0/co1/cr0/ss0/cac9c0/cpcf00/pc000/tcfff/fn2/fs100/szw576/szh243/tatFINAL%20DEL%20TORNEO/tacf90/tptFIN%20DEL%20TORNEO/tpcf00/iso2023-12-31T23:59:59" allowtransparency="true" frameborder="0" width="281" height="81"></iframe>
+    </div>
+
+
+</main>
+
+<div class="col-md-0 offset-md-0 my-auto"> <!--Este div ocupará 4 columnas del espacio (centrado)-->
+        <h2 class="text-center text-warning">
+            RANKING DEL TORNEO
+        </h2>
+
+<div class="col-md-0 offset-md-0 my-auto">
+    <h6 class="text-info " >Haz "check" para leer las BASES DEL TORNEO</h6>
+    <input type ="checkbox" id="spoiler"  >
+              <label for="spoiler"></label>
+              <div class="spoiler bg-light text-center">
+
+                  <p><h5 class="text-warning " >- BASES DEL TORNEO -</h5></p><p><h6><li>Se mostrarán las 10 máximas puntuaciones por cada juego.</li></h6></p>
+                    <p><h6><li>Las tres mejores puntuaciones de cada juego al final del torneo, obtendrán, de los videojuegos disponibles: <p>
+                  <br>
+                - Tercer puesto: un videojuego a elegir.<p>
+                - Segundo puesto : dos videojuegos a elegir<p>
+                - Primer puesto: tres videojuegos a elegir.</li></h6></p>
+
+                <br>
+                <p><h6><li>Para ser el ganador ABSOLUTO del torneo:<p>
+              <br>
+                -El ganador debe de estar dentro de las tres máximas puntuaciones en cada uno de los juegos<p>
+                -Si hubiera dos usuario en dicha condición, el desempate se haría sumando la mayor puntuación en cada juego que haya obtenido cada uno de esos usuarios <p>
+                -Ganaría el que mayor puntuación obtenga de dicha suma.<p>
+                -El premio consinte en una videoconsola con los cinco juegos disponibles<p>
+                *** Si ningún jugador reuniera los requisitos para ser ganador ABSOLUTO, el premio quedará desierto</li></h6></p>
+
+
+              </div>
+        </div>
+
+
+<main class="container p-3">
+    <div class="col-md-0 offset-md-2 my-auto">
+        <div class="card border-danger mb-3 text-white bg-danger" style="max-width: 40rem;">
+        <div class="card-header text-white text-center"><h4>GANADOR ABSOLUTO</h4></div>
+        <div class="card-body">
+            <table class="table table-hover">
+               <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color: white">1--PRIMER PUESTO</th>
+                    <td style="color: white">{{lista_final[0]}}</td>
+                    <td style="color: white">{{lista_final[1]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:#FFA1B9" >2--SEGUNDO PUESTO</th>
+                    <td style="color:#FFA1B9">{{lista_final[2]}}</td>
+                    <td style="color:#FFA1B9">{{lista_final[3]}}</td>
+                </tr>
+                </thead>
+                <thead>
+                <tr class="table-active">
+                    <th scope="row"  style="color:#FF517E">3--TERCER PUESTO</th>
+                    <td style="color:#FF517E">{{lista_final[4]}}</td>
+                    <td style="color:#FF517E">{{lista_final[5]}}</td>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        </div>
+    </div>
+</main>
+<div id = "miSection" class="container">
+    <div class="row">
+    <div class="col-md-4 offset-md-0 my-auto">
+        <div class="card border-success mb-3 text-white" style="max-width: 30rem;">
+        <div class="card-header text-success text-center"><h5>TOP 10 SPACE</h5></div>
+        <div class="card-body">
+            <table class="table table-hover">
+               <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:#81F557">1º</th>
+                    <td style="color:#81F557">{{lista[0]}}</td>
+                    <td style="color:#81F557">{{lista[1]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:#48E40F" >2º</th>
+                    <td  style="color:#48E40F">{{lista[2]}}</td>
+                    <td  style="color:#48E40F">{{lista[3]}}</td>
+                </tr>
+                </thead>
+                <thead>
+                <tr class="table-active">
+                    <th scope="row"  style="color:#32AD05">3º</th>
+                    <td style="color:#32AD05">{{lista[4]}}</td>
+                    <td style="color:#32AD05">{{lista[5]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:white">4º</th>
+                    <td style="color:white">{{lista[6]}}</td>
+                    <td style="color:white">{{lista[7]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:white" >5º</th>
+                    <td style="color:white">{{lista[8]}}</td>
+                    <td style="color:white">{{lista[9]}}</td>
+                </tr>
+                </thead>
+                <thead>
+                <tr class="table-active">
+                    <th scope="row"  style="color:white">6º</th>
+                    <td style="color:white">{{lista[10]}}</td>
+                    <td style="color:white">{{lista[11]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:white">7º</th>
+                    <td style="color:white">{{lista[12]}}</td>
+                    <td style="color:white">{{lista[13]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:white" >8º</th>
+                    <td style="color:white">{{lista[14]}}</td>
+                    <td style="color:white">{{lista[15]}}</td>
+                </tr>
+                </thead>
+                <thead>
+                <tr class="table-active">
+                    <th scope="row"  style="color:white">9º</th>
+                    <td style="color:white">{{lista[16]}}</td>
+                    <td style="color:white">{{lista[17]}}</td>
+                </tr>
+                </thead>
+                <thead>
+                <tr class="table-active">
+                    <th scope="row"  style="color: white">10º</th>
+                    <td style="color:white">{{lista[18]}}</td>
+                    <td style="color:white">{{lista[19]}}</td>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-4 offset-md-0 my-auto">
+        <div class="card border-warning mb-3 text-white" style="max-width: 25rem;">
+        <div class="card-header text-warning text-center"><h5>TOP 10 NAVES</h5></div>
+        <div class="card-body">
+            <table class="table table-hover">
+               <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:#FFE000">1º</th>
+                    <td style="color:#FFE000">{{lista_nav[0]}}</td>
+                    <td style="color:#FFE000">{{lista_nav[1]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:#FFB400" >2º</th>
+                    <td style="color:#FFB400">{{lista_nav[2]}}</td>
+                    <td style="color:#FFB400">{{lista_nav[3]}}</td>
+                </tr>
+                </thead>
+                <thead>
+                <tr class="table-active">
+                    <th scope="row" style="color:#FF8E00" >3º</th>
+                    <td style="color:#FF8E00">{{lista_nav[4]}}</td>
+                    <td style="color:#FF8E00">{{lista_nav[5]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:white">4º</th>
+                    <td style="color:white">{{lista_nav[6]}}</td>
+                    <td style="color:white">{{lista_nav[7]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:white" >5º</th>
+                    <td style="color:white">{{lista_nav[8]}}</td>
+                    <td style="color:white">{{lista_nav[9]}}</td>
+                </tr>
+                </thead>
+                <thead>
+                <tr class="table-active">
+                    <th scope="row"  style="color:white">6º</th>
+                    <td style="color:white">{{lista_nav[10]}}</td>
+                    <td style="color:white">{{lista_nav[11]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:white">7º</th>
+                    <td style="color:white">{{lista_nav[12]}}</td>
+                    <td style="color:white">{{lista_nav[13]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:white" >8º</th>
+                    <td style="color:white">{{lista_nav[14]}}</td>
+                    <td style="color:white">{{lista_nav[15]}}</td>
+                </tr>
+                </thead>
+                <thead>
+                <tr class="table-active">
+                    <th scope="row"  style="color:white">9º</th>
+                    <td style="color:white">{{lista_nav[16]}}</td>
+                    <td style="color:white">{{lista_nav[17]}}</td>
+                </tr>
+                </thead>
+                <thead>
+                <tr class="table-active">
+                    <th scope="row"  style="color: white">10º</th>
+                    <td style="color:white">{{lista_nav[18]}}</td>
+                    <td style="color:white">{{lista_nav[19]}}</td>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 offset-md-0 my-auto">
+        <div class="card border-info mb-3 text-white" style="max-width: 25rem;">
+        <div class="card-header text-info text-center"><h5>TOP 10 ARKANOID</h5></div>
+        <div class="card-body">
+            <table class="table table-hover">
+               <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:#EE9AFF">1º</th>
+                    <td style="color:#EE9AFF">{{lista_ark[0]}}</td>
+                    <td style="color:#EE9AFF">{{lista_ark[1]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:#E560FF" >2º</th>
+                    <td style="color:#E560FF">{{lista_ark[2]}}</td>
+                    <td style="color:#E560FF">{{lista_ark[3]}}</td>
+                </tr>
+                </thead>
+                <thead>
+                <tr class="table-active">
+                    <th scope="row" style="color:#D600FF">3º</th>
+                    <td style="color:#D600FF">{{lista_ark[4]}}</td>
+                    <td style="color:#D600FF">{{lista_ark[5]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:white">4º</th>
+                    <td style="color:white">{{lista_ark[6]}}</td>
+                    <td style="color:white">{{lista_ark[7]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:white" >5º</th>
+                    <td style="color:white">{{lista_ark[8]}}</td>
+                    <td style="color:white">{{lista_ark[9]}}</td>
+                </tr>
+                </thead>
+                <thead>
+                <tr class="table-active">
+                    <th scope="row"  style="color:white">6º</th>
+                    <td style="color:white">{{lista_ark[10]}}</td>
+                    <td style="color:white">{{lista_ark[11]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:white">7º</th>
+                    <td style="color:white">{{lista_ark[12]}}</td>
+                    <td style="color:white">{{lista_ark[13]}}</td>
+                </tr>
+                </thead>
+                <thead >
+                <tr class="table-active">
+                    <th scope="row" style="color:white" >8º</th>
+                    <td style="color:white">{{lista_ark[14]}}</td>
+                    <td style="color:white">{{lista_ark[15]}}</td>
+                </tr>
+                </thead>
+                <thead>
+                <tr class="table-active">
+                    <th scope="row"  style="color:white">9º</th>
+                    <td style="color:white">{{lista_ark[16]}}</td>
+                    <td style="color:white">{{lista_ark[17]}}</td>
+                </tr>
+                </thead>
+                <thead>
+                <tr class="table-active">
+                    <th scope="row"  style="color: white">10º</th>
+                    <td style="color:white">{{lista_ark[18]}}</td>
+                    <td style="color:white">{{lista_ark[19]}}</td>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        </div>
+    </div>
+    </div>
+
+</div>
+
+    </div>
+
+
+    </div>
+
+    </body>
+</html>

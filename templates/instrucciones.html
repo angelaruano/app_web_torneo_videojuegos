@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instrucciones</title>
+
+    <!-- Enlace a hoja de estilo main.css-->
+    <link rel = 'stylesheet' href="{{url_for('static', filename='main.css') }}">
+    <!-- Enlace bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Enlace a hoja de estilo de bootstrap cdn-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+
+</head>
+<body>
+
+{% if current_user.is_authenticated%}
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/index">HOME</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="/index">Jugar
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/perfil">Mi perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/torneo">Torneo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/instrucciones">Instrucciones para jugar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/premios">Ver premios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contacto">CONTACTO</a>
+        </li>
+
+          {% if current_user.is_admin()%}
+          <li class="nav-item">
+          <a class="nav-link active" href="#"></a>
+          <li class="nav-item">
+          <a class="nav-link active" href="/admin/listarusuarios">// FUNCIONES DE ADMINISTRADOR:  Listar usuarios// </a>
+          <li class="nav-item">
+          <a class="nav-link active" href="/emailmasivo"> // email masivo //</a>
+          {% endif%}
+
+      </ul>
+      <form class="d-flex">
+        <a class="nav-link" href="/logout">CERRAR SESIÓN</a>
+
+      </form>
+    </div>
+  </div>
+</nav>
+
+{% endif %}
+<main class="container p-3">
+    <div class="col-md-0 offset-md-0 my-auto"> <!--Este div ocupará 4 columnas del espacio (centrado)-->
+        <div class="card border-danger text-white bg-secondary mb-3" >
+            <div class="card-header text-center"  style="color:#FF517E" ><h5>Instrucciones generales</h5>
+            <div class="card-body">
+                <p class="card-text text-center text-white">En la página principal,haz click en el botón "jugar" del juego elegido.
+                Se abrirá la ventana del juego y una nueva pestaña. Mientras no cierres dicha pestaña, la ventana del juego permanecerá abierta
+                y podrás jugar cuantas partidas quieras. Cuando quieras terminar o jugar otro juego, deberás cerrar la pestaña.
+                Para comenzar las partidas, una vez abierta la ventana del juego,pulsa cualquier tecla. BUENA SUERTE!!!</p>
+
+            </div>
+</main>
+<main class="container p-3">
+  <div class="row">
+              <div class="col-md-0 offset-md-0 my-auto text-warning"> <!--Este div ocupará 4 columnas del espacio (centrado)-->
+
+                    <div class="card border-success text-white  mb-3" >
+                        <div class="card-header text-center text-success" ><h5>Instrucciones space</h5>
+                    <div class="card-body">
+                      <p class="card-text text-white">
+                           Para mover tu nave por toda la pantalla, usa las flechas de dirección y para disparar, usa la barra espaciadora. <br>
+                         Deberás esquivar tanto a las naves enemigas, como a los meteoritos, para que no te resten vida, ni puntos.<br>
+                         Tienes 3 vidas. El juego termina cuando las gastes.<br>
+                         Cada nave enemiga, necesita ser disparada varias veces para desaparecer <br>
+                         Las puntuaciones por disparar a los objetivos o chocar contra ellos, son:<p>
+                        *Meteoritos: Acertar da 25 puntos; Chocar resta 15 puntos y 10 de vida.<p>
+                        *Nave roja: Acertar da 100 puntos; Chocar resta 10 puntos y 5 de vida.<p>
+                        *Nave azul: Acertar da 50 puntos; Chocar resta 25 puntos y 10 de vida.<p>
+                        *Nave verde: Acertar da 25 puntos; Chocar resta 50 puntos y 15 vida.<p>
+                        *Nave amarilla: Acertar da 10 puntos; Chocar resta 100 puntos y 20 vida.<p>
+                    </p>
+                    </div>
+                  </p>
+                    </div>
+                      <button type="button" class="btn btn-success btn-block" onclick="location.href = 'http://127.0.0.1:5000/index' ">
+                        Ir a menú de juegos</button>
+                    </div>
+              </div>
+
+
+              <div class="col-md-0 offset-md-0 my-auto text-warning "> <!--Este div ocupará 4 columnas del espacio (centrado)-->
+
+
+                  <p>
+
+                    <div class="card border-warning text-white  mb-3" >
+                      <div class="card-header text-center text-warning" ><h5> Instrucciones  naves</h5>
+                    <div class="card-body">
+                      <p class="card-text text-white">Para disparar, usa la barra espaciadora y para mover tu nave de un lado a otro, usa las flechas <- izquierda/ -> derecha<br>
+                      Dispones de 3 vidas. El juego terminará cuando las gastes. Al principio del juego o de cada vida, dispones de unos segundos de inmunidad. <br>
+                      Los enemigos te dispararán aleatoriamente. Tu objetivo es que no te den y acabar tú con ellos.<br>
+                      Cada vez que aciertes a un enemigo, obtendrás 10 puntos; Cada vez que un disparo enemigo te de, se te restará una vida y 100 puntos.<br>
+                      Habrá un OVNI que pase por encima de la pantalla. Acertarle, te da 50 puntos, pero además... Éste tiene premios...Atrápalos!!! Los posibles premios que caerán son:<p>
+                        - Una moneda, que te dará 100 puntos extra.<p>
+                        - Un botiquín que te dará una vida extra.<p>
+                        - Una poción que te dará disparos extra: Si la coges una ves, dispararás de 3 en 3. La segunda, de 5 en 5. Pero CUIDADO, si los enemigos te aciertan, perderás los poderes acumulados y volverás a un solo disparo. BUENA SUERTE!!!
+                    </p>
+                    </div>
+                  </p>
+                    </div>
+                      <button type="button" class="btn btn-warning btn-block" onclick="location.href = 'http://127.0.0.1:5000/index' ">
+                        Ir a menú de juegos</button>
+                    </div>
+              </div>
+
+              <div class="col-md-0 offset-md-0 my-auto text-warning"> <!--Este div ocupará 4 columnas del espacio (centrado)-->
+
+
+                    <div class="card border-info text-white  mb-3" >
+                        <div class="card-header text-center text-info"><h5>Instrucciones arkanoid</h5>
+                    <div class="card-body">
+                      <p class="card-text text-white">Tu objetivo es derribar los ladrillos con tu pelota y lograr darle a la pelota sin que se te escape <br>
+                      Si la pelota se te escapa, perderás una vida de las 3 de las que dispones.<br>
+                      Para mover la pala, usa las teclas <- izquierda y -> derecha.<p>
+                        - Cuando más escorado sea el golpe con la pala en la pelota, más se acelerará la pelota.<p>
+                        - Para desacelerar, intenta darle con un golpe centrado.<p>
+                        - Cada ladrillo que derribes, te dará puntos aleatorios entre 30 y 100.<p>
+                        -La partida acaba cuando te quedes sin vidas. BUENA SUERTE!!!</p>
+                    </div>
+                  </p>
+                    </div>
+                      <button type="button" class="btn btn-info btn-block" onclick="location.href = 'http://127.0.0.1:5000/index' ">
+                        Ir a menú de juegos</button>
+                    </div>
+
+              </div>
+
+</html>

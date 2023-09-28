@@ -1,0 +1,4 @@
+SQLAlchemy~=2.0.20
+pygame~=2.5.1
+flask~=2.3.3
+flask-login~=0.6.2

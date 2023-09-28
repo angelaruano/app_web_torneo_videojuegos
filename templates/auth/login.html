@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>login</title>
+
+    <!-- Enlace a hoja de estilo main.css-->
+    <link rel = 'stylesheet' href="{{url_for('static', filename='main.css') }}">
+    <!-- Enlace bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Enlace a hoja de estilo de bootstrap cdn-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <main class="container p-4">
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3 my-auto"> <!--Este div ocupará 4 columnas del espacio (centrado)-->
+                <br>
+                <div class="card text-center text-warning border-warning mb-5" style="max-width: 30rem;">
+                    <div class="card-header">
+
+                        <br>
+                        <h4>
+                            <p>BIENVENIDO:</p>
+                            <p> Para entrar al torneo debes de estar registrado</p>
+                        </h4>
+                    </div>
+
+                    <div class="card-body">
+                        <form class="form-signin" action="/login" method="post">
+
+                            <!-- A través de la función flash de flask, logro, con un condicional, que
+                            al introducir mal el usuario o contraseña, se muestre una alerta
+                            con el mensage indicado en el main-->
+                            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                            <br/>
+                            {% for message in messages %}
+
+                            <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                <strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ message }}
+                            </font></font></div>
+
+
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+
+
+                            <div class="form-group">
+                                <label class="col-form-label col-form-label-sm mt-2" for="usuario">USUARIO</label>
+                                <input class="form-control form-control-sm" type="text" name="usuario" placeholder="Usuario" id="usuario">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label col-form-label-sm mt-0" for="password">CONTRASEÑA</label>
+                                <input class="form-control form-control-sm" type="password" name="password" placeholder="password" id="password">
+                            </div>
+
+
+                            <p><button type="submit" class="btn btn-success">
+                                Validarme
+                            </button></p>
+
+                            <br>
+
+                            <p><button type="button" class="btn btn-danger" onclick="location.href = 'http://127.0.0.1:5000/pagina-registro' ">
+                                REGISTRARME AHORA
+                            </button></p>
+                            <br>
+
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>
